@@ -27,14 +27,10 @@ Spark.onEvent('next', function(data) {
 });
 
 Spark.onEvent('play', function(data) {
-  console.log("Play: " + data);
+  console.log("Change status: " + data);
   request.post(sonosURL + '/changeStatus', {});
 });
 
-Spark.onEvent('stop', function(data) {
-  console.log("Stop: " + data);
-  request.post(sonosURL + '/changeStatus', {});
-});
 // END - Register Spark events
 
 

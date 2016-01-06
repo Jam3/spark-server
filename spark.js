@@ -5,7 +5,7 @@ var request = require('request');
 // START - Config PARAMS
 var sonosIp = '192.168.0.58';
 var sonosPort = '8080';
-var sparkToken = '295f8bbb22d0e32cc4e6bdc53fd47724e5acc919';
+var sparkToken = 'db22f0866cefd2f9b0301b5fef43f3128a706e0d';
 // END - Config PARAMS
 
 // Generated Sonos URL

@@ -1,14 +1,19 @@
+// Modules
 var Spark = require('spark');
 var request = require('request');
-var sys = require('sys');
-var exec = require('child_process').exec;
-var child;
+
+// START - Config PARAMS
 var sonosIp = '192.168.0.58';
 var sonosPort = '8080';
+// END - Config PARAMS
+
+// Generated Sonos URL
 var sonosURL = 'http://'+sonosIp+':'+sonosPort;
 
+// LOGIN INTO SPARK
 Spark.login({accessToken: '295f8bbb22d0e32cc4e6bdc53fd47724e5acc919'}, sparkConnected);
 
+// START - Register Spark events
 Spark.onEvent('prev', function(data) {
   console.log("Prev Event: " + data);
   request.post(sonosURL+'/previous', {});
@@ -28,6 +33,8 @@ Spark.onEvent('stop', function(data) {
   console.log("Stop: " + data);
   request.post(sonosURL+'/changeStatus', {});
 });
+// END - Register Spark events
+
 
 var deviceReference = null;
 
@@ -50,13 +57,13 @@ function getDevicesComplete(err, devices) {
 
     Spark.getDevice('sparkCore', deviceReadyHandler);
   } else {
-    console.log('FAILURE:: '+err);
+    console.log('Failure:: '+err);
   }
 
 }
 
 function deviceReadyHandler(err, device) {
-  console.log('Device name ready: ' + device.name);
+  console.log('Success:: Device name ready: ' + device.name);
   deviceReference = device;
 
 }

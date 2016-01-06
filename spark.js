@@ -1,15 +1,16 @@
 // Modules
 var Spark = require('spark');
 var request = require('request');
+var config = require('./config.js');
 
 // START - Config PARAMS
-var sonosIp = '192.168.0.58';
-var sonosPort = '8080';
-var sparkToken = 'db22f0866cefd2f9b0301b5fef43f3128a706e0d';
+var sonosIp = config.sonos.ip;
+var sonosPort = config.sonos.port;
+var sparkToken = config.spark.token;
 // END - Config PARAMS
 
 // Generated Sonos URL
-var sonosURL = 'http://'+sonosIp+':'+sonosPort;
+var sonosURL = 'http://' + sonosIp + ':' + sonosPort;
 
 // LOGIN INTO SPARK
 Spark.login({accessToken: sparkToken}, sparkConnected);
@@ -17,22 +18,22 @@ Spark.login({accessToken: sparkToken}, sparkConnected);
 // START - Register Spark events
 Spark.onEvent('prev', function(data) {
   console.log("Prev Event: " + data);
-  request.post(sonosURL+'/previous', {});
+  request.post(sonosURL + '/previous', {});
 });
 
 Spark.onEvent('next', function(data) {
   console.log("Next Event: " + data);
-  request.post(sonosURL+'/next', {});
+  request.post(sonosURL + '/next', {});
 });
 
 Spark.onEvent('play', function(data) {
   console.log("Play: " + data);
-  request.post(sonosURL+'/changeStatus', {});
+  request.post(sonosURL + '/changeStatus', {});
 });
 
 Spark.onEvent('stop', function(data) {
   console.log("Stop: " + data);
-  request.post(sonosURL+'/changeStatus', {});
+  request.post(sonosURL + '/changeStatus', {});
 });
 // END - Register Spark events
 
@@ -50,20 +51,20 @@ function getDevicesComplete(err, devices) {
   if (!err) {
     var device = devices[0];
     console.log('Device name: ' + device.name);
-    console.log('- connected?: ' + device.connected);
+    console.log('- connected? ' + device.connected);
     console.log('- variables: ' + device.variables);
     console.log('- functions: ' + device.functions);
     console.log('- version: ' + device.version);
-    console.log('- requires upgrade?: ' + device.requiresUpgrade);
+    console.log('- requires upgrade? ' + device.requiresUpgrade);
 
     Spark.getDevice('sparkCore', deviceReadyHandler);
   } else {
-    console.log('Failure:: '+err);
+    console.log('Failure:: ' + err);
   }
 
 }
 
 function deviceReadyHandler(err, device) {
-  console.log('Success:: Device name ready: ' + device.name);
+  console.log('Success:: Device ' + device.name + ' is ready');
   deviceReference = device;
 }

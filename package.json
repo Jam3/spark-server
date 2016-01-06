@@ -1,0 +1,15 @@
+{
+  "name": "spark-server",
+  "version": "0.0.1",
+  "description": "Spark server for handling Spark devices and execute Sonos commands",
+  "author": {
+    "name": "Maximo Belen",
+    "email": "maximobelen@me.com"
+  },
+  "license": "MIT",
+  "repository": "git@github.com:Jam3/spark-server.git",
+  "dependencies": {
+    "request": "^2.67.0",
+    "spark": "^1.0.0"
+  }
+}

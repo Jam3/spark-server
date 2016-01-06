@@ -5,13 +5,14 @@ var request = require('request');
 // START - Config PARAMS
 var sonosIp = '192.168.0.58';
 var sonosPort = '8080';
+var sparkToken = '295f8bbb22d0e32cc4e6bdc53fd47724e5acc919';
 // END - Config PARAMS
 
 // Generated Sonos URL
 var sonosURL = 'http://'+sonosIp+':'+sonosPort;
 
 // LOGIN INTO SPARK
-Spark.login({accessToken: '295f8bbb22d0e32cc4e6bdc53fd47724e5acc919'}, sparkConnected);
+Spark.login({accessToken: sparkToken}, sparkConnected);
 
 // START - Register Spark events
 Spark.onEvent('prev', function(data) {

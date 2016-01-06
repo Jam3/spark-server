@@ -10,7 +10,7 @@ var sparkToken = config.spark.token;
 // END - Config PARAMS
 
 // Generated Sonos URL
-var sonosURL = 'http://' + sonosIp + ':' + sonosPort;
+var sonosURL = 'http://' + sonosIp + ':' + sonosPort+'/api';
 
 // LOGIN INTO SPARK
 Spark.login({accessToken: sparkToken}, sparkConnected);

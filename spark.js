@@ -18,17 +18,29 @@ Spark.login({accessToken: sparkToken}, sparkConnected);
 // START - Register Spark events
 Spark.onEvent('prev', function(data) {
   console.log("Prev Event: " + data);
-  request.post(sonosURL + '/previous', {});
+  request.post(sonosURL + '/previous', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log(body) // Show the HTML for the Google homepage. 
+    }
+  });
 });
 
 Spark.onEvent('next', function(data) {
   console.log("Next Event: " + data);
-  request.post(sonosURL + '/next', {});
+  request.post(sonosURL + '/next', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log(body) // Show the HTML for the Google homepage. 
+    }
+  });
 });
 
 Spark.onEvent('play', function(data) {
   console.log("Change status: " + data);
-  request.post(sonosURL + '/changeStatus', {});
+  request.post(sonosURL + '/changeStatus', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log(body) // Show the HTML for the Google homepage. 
+    }
+  });
 });
 
 // END - Register Spark events

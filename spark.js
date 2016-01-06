@@ -39,15 +39,15 @@ Spark.onEvent('stop', function(data) {
 
 var deviceReference = null;
 
+// After Login into Spark this methods are going to run
+
 function sparkConnected(err, body) {
   console.log('API call login completed on callback:', err, body);
-
   Spark.listDevices(getDevicesComplete);
-
 }
 
 function getDevicesComplete(err, devices) {
-  if(!err) {
+  if (!err) {
     var device = devices[0];
     console.log('Device name: ' + device.name);
     console.log('- connected?: ' + device.connected);
@@ -66,5 +66,4 @@ function getDevicesComplete(err, devices) {
 function deviceReadyHandler(err, device) {
   console.log('Success:: Device name ready: ' + device.name);
   deviceReference = device;
-
 }
